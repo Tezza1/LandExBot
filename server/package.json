@@ -1,0 +1,18 @@
+{
+  "name": "langexbot",
+  "version": "1.0.0",
+  "description": "Language learning through AI chatbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "MongoDB",
+    "React",
+    "Dialogflow"
+  ],
+  "author": "Terry Shenker",
+  "license": "ISC"
+}
