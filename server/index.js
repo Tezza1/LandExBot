@@ -1,8 +1,13 @@
 // server/index.js
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+// Body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // homepage (not logged in)
 app.get('/', (req, res) => {
