@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Navbar from './Navbar';
 import Home from './Home';
 import DialogCreate from './dialogs/DialogCreate';
 import DialogEdit from './dialogs/DialogEdit';
@@ -16,6 +17,7 @@ class App extends Component {
             <div className="App">
                 <BrowserRouter>
                     <div>
+                        <Navbar />
                         <Route path="/" exact component={Home} />
                         <Route path="/show" exact component={DialogList} />
                         <Route path="/dialog/new" exact component={DialogCreate} />
