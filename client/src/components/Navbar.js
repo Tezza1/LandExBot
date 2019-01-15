@@ -1,15 +1,18 @@
+// client/src/components/NavBar.js
+
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GoogleAuth from './GoogleAuth';
+import './NavBar.css';
 
 const Navbar = () => {
     return(
-        <div class="navbar-fixed">
-            <nav>
-                <div class="nav-wrapper">
-                    <Link to="/show" class="brand-logo">LangExBot</Link>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><Link to="/show">Dialogs</Link></li>
-                        <li><a class="waves-effect waves-light btn">{/*<i class="fab fa-google"></i>*/} Login</a></li>
+        <div className="navbar-fixed white">
+            <nav className="white">
+                <div className="nav-wrapper">
+                    <Link to="/show" className="brand-logo" id="text-color"><i className="material-icons" id="text-color">android</i>LangExBot</Link>
+                    <ul id="nav-mobile" className="right hide-on-med-and-down">
+                        <li><GoogleAuth /></li>
                     </ul>
                 </div>
             </nav>

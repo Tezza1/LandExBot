@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from './Navbar';
+import FloatButton from './FloatButton'
 import Home from './Home';
 import DialogCreate from './dialogs/DialogCreate';
 import DialogEdit from './dialogs/DialogEdit';
@@ -24,6 +25,7 @@ class App extends Component {
                         <Route path="/dialog/edit" exact component={DialogEdit} />
                         <Route path="/dialog/delete" exact component={DialogDelete} />
                         <Route path="/dialog/show" exact component={DialogShow} />
+                        <FloatButton />
                     </div>
                 </BrowserRouter>
             </div>
