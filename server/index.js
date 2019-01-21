@@ -1,5 +1,12 @@
 // server/index.js
 
+/*----------------------------------------
+- login with Google
+- send email and name to DB
+- if not in DB then register user
+- if in DB then get and use the User
+-------------------------------------------*/
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -24,8 +31,12 @@ app.use(bodyParser.json());
 // @desc        Landing page
 // @access      Public
 app.get('/', (req, res) => {
-    // when login, find the user
-    User.findeOne({ email: req.body.email })
+    res.send("hello")
+});
+
+app.post('/user/registration', (req, res) => {
+        // when login, find the user
+    User.findOne({ email: req.body.email })
         .then(user => {
             if(user) {
                 // then get that user info
@@ -48,7 +59,29 @@ app.get('/', (req, res) => {
                     .catch(err => console.log(err));
             }
         })
-});
+})
+
+// @route       POST /
+// @desc        Login User / Returning JWT token
+// @access      Public
+app.post('/user/login', (req, res) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    
+    // Find user by email
+    User.findOne({email})
+        .then(user => {
+            // Check for user
+            if(!user) {
+                return res.status(404).json({email: 'User not found'});
+            } else {
+                return res.send("User found!")
+            }
+            
+            //
+        })
+})
+
 // @route       GET /
 // @desc        List of all conversations
 // @access      Private
