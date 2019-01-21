@@ -2,8 +2,10 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
 const app = express();
+const mongoDB = require('./config/keys').mongoURI;
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
