@@ -5,7 +5,12 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
+
 const mongoDB = require('./config/keys').mongoURI;
+mongoose
+    .connect(mongoDB)
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err))
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
