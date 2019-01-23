@@ -9,7 +9,6 @@ import Home from './Home';
 import DialogCreate from './dialogs/DialogCreate';
 import DialogEdit from './dialogs/DialogEdit';
 import DialogDelete from './dialogs/DialogDelete';
-import DialogList from './dialogs/DialogList';
 import DialogShow from './dialogs/DialogShow';
 import DialogChat from './dialogs/DialogChat';
 
@@ -21,7 +20,6 @@ class App extends Component {
                     <div>
                         <Navbar />
                         <Route path="/" exact component={Home} />
-                        <Route path="/show" exact component={DialogList} />
                         <Route path="/dialog/new" exact component={DialogCreate} />
                         <Route path="/dialog/edit" exact component={DialogEdit} />
                         <Route path="/dialog/delete" exact component={DialogDelete} />

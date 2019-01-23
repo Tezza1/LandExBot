@@ -101,7 +101,7 @@ class DialogChat extends Component {
                             <li>
                                 <a>
                                     <i class="material-icons">list_alt</i>
-                                    <Link to="/dialog/list">Dialogs</Link>
+                                    <Link to="/dialog/show">Dialogs</Link>
                                 </a>
                             </li>
                             <li>

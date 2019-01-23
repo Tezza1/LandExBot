@@ -40,7 +40,7 @@ class GoogleAuth extends React.Component {
                     <a
                         className="waves-effect waves-light lighten-2 red btn"
                         onClick={() => this.auth.signOut()}
-                    ><i className="material-icons left">person_pin</i>Sign out</a>
+                    ><i className="material-icons left">account_circle</i>Sign out</a>
                 </div>
             );
         } else {
@@ -49,7 +49,10 @@ class GoogleAuth extends React.Component {
                     <a
                         className="waves-effect waves-light lighten-2 red btn"
                         onClick={() => this.auth.signIn()}
-                    ><i className="material-icons left">account_circle</i>Sign in</a>
+                    >
+                        <img className="responsive-img" id="navbar-button-icon" src={'/img/google_logo.png'} alt="Google logo" />
+                        Sign in
+                    </a>
                 </div>
             );
         }
