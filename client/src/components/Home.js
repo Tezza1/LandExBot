@@ -7,8 +7,11 @@ const Home = () => {
     return (
         <div>
             <div className="row">
-                <div className="col s12">
-                    <img className="responsive-img" id="home_image" src={'/img/lang_bots.png'} alt="Language Bot Robots" />
+                <div className="col s6">
+                    <img className="responsive-img" id="home_image1" src={'/img/robot-2.png'} alt="Language Bot Robot 1" />
+                </div>
+                <div className="col s6">
+                    <img className="responsive-img" id="home_image2" src={'/img/robot-icon.png'} alt="Language Bot Robot 2" />
                 </div>
             </div>
             <div className="row">

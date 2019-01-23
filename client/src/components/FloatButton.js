@@ -5,7 +5,7 @@ const FloatButton = () => {
     return (
         <div className="fixed-action-btn">
             <a className="btn-floating btn-large waves-effect waves-light lighten-2 red">
-                <Link to="/show"><i className="material-icons">textsms</i></Link>
+                <Link to="/dialog/chat"><i className="material-icons">textsms</i></Link>
             </a>
         </div>
     );

@@ -1,0 +1,45 @@
+/* client/src/components/dialogs/DialogChat.css */
+
+#red-write-header {
+    color: #ee6e73;
+}
+
+#robot-image {
+    padding-top: 1em;
+    max-height: 8em;
+    display:block;
+    margin:auto;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+#header-row {
+  margin-bottom: 0;
+}
+
+#chat-area {
+  width: 100%;
+  min-height: 20em;
+  padding: 2em;
+}
+
+/* -----------------------------*/
+
+.chat-bubble {
+  display: flex;
+}
+
+.chat-bubble.ai {
+  justify-content: flex-end;
+}
+
+.chat-bubble.ai .chat-content {
+  background-color: #1976d2;
+}
+
+.chat-content {
+  background-color: #009688;
+  color: white;
+}

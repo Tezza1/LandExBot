@@ -3,4 +3,10 @@
     margin-left: 1em;
 }
 
+#navbar-icon {
+    max-height: 1.2em;
+    margin-bottom: -0.2em;
+    margin-right: 0.2em;
+}
+
 /* TODO: smaller media screens, remove the margin */

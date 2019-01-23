@@ -7,21 +7,32 @@
 - if in DB then get and use the User
 -------------------------------------------*/
 
+require('dotenv').config({ path: 'variables.env' });
+
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const gravatar = require('gravatar');
+const cors = require('cors');
+const processMessage = require('./process-message');
+
 
 const app = express();
 
 // Load user model
 const User = require('./models/User.js');
 
-const mongoDB = require('./config/keys').mongoURI;
+
+/*
+const mongoDB = process.env.MONGO_URI;
 mongoose
     .connect(mongoDB)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err))
+*/
+
+// Cors
+app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -82,6 +93,14 @@ app.post('/user/login', (req, res) => {
         })
 })
 
+// @route       POST /
+// @desc        Have a conversation with a bot
+// @access      Public
+app.post('/dialog/chat', (req, res) => {
+    const { message } = req.body;
+    processMessage(message);
+});
+
 // @route       GET /
 // @desc        List of all conversations
 // @access      Private
@@ -127,7 +146,7 @@ app.delete('/dialog/:id', (req, res) => {
     );
 });
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
     console.log(`App running on port ${port}`);
 })
