@@ -2,6 +2,43 @@ import React, { Component } from 'react';
 import './DialogShow.css';
 
 class DialogShow extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = ({
+            response: 'Hello'
+        })
+    }
+
+    componentDidMount() {
+        this.callApi()
+            .then(res => this.setState({ response: res.express }))
+            .catch(err => console.log(err));
+    }
+
+    callApi = async () => {
+        const response = await fetch('http://localhost:5000/dialog/show');
+        const body = await response.json();
+        if (response.status !== 200) throw Error(body.message);
+        return body;
+    };
+
+    /*
+    // send data
+    handleSubmit = async e => {
+        e.preventDefault();
+        const response = await fetch('/api/world', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ post: this.state.post }),
+        });
+        const body = await response.text();
+        this.setState({ responseToPost: body });
+    };
+    */
+
     render() {
         return (
             <div>
@@ -46,6 +83,9 @@ class DialogShow extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <p>The data from the backend is: {this.state.response}</p>
                 </div>
             </div>
         )

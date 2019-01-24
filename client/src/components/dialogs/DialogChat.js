@@ -11,7 +11,7 @@ class DialogChat extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userMessage: '',  // he value of whatever the user types into the input field
+            userMessage: '',  // the value of whatever the user types into the input field
             conversation: [],  // array that will hold each message in the conversation
         };
     }
