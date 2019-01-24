@@ -10,11 +10,11 @@ class DialogShow extends Component {
                         <img className="responsive-img" id="robot-image" src={'/img/robot-icon.png'} alt="Language Bot Robot 2" />
                     </div>
                     <div className="col s12">
-                        <h1 className="center-align" id ="red-write-header">List Dialogs</h1>
+                        <h1 className="center-align" id ="red-write-header">Your Dialogs</h1>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col s6 offset-s3">
+                    <div className="col s12 m6 offset-m3">
                         <div className="row">
                             <div className="col s12 m6">
                                <div className="card">

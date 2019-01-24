@@ -16,34 +16,40 @@ h1 {
 }
 
 #header-row {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .top-button {
-  width: 100%;
+    width: 100%;
 }
 
 #chat-area {
-  width: 100%;
-  min-height: 20em;
-  padding: 2em;
+    width: 100%;
+    min-height: 20em;
+    padding: 2em;
 }
 
 /* -----------------------------*/
 
 .chat-bubble {
-  display: flex;
+    display: flex;
 }
 
 .chat-bubble.ai {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 .chat-bubble.ai .chat-content {
-  background-color: #1976d2;
+    background-color: #1976d2;
 }
 
 .chat-content {
-  background-color: #009688;
-  color: white;
+    background-color: #009688;
+    color: white;
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+            font-size: 3em;
+    }
 }

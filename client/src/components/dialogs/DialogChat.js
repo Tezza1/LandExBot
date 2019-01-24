@@ -95,19 +95,19 @@ class DialogChat extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col s3 offset-s3">
+                    <div className="col s6 m3 offset-m3">
                         <a className='btn white red-text waves-effect waves-red top-button'>
                             <Link to="/dialog/show">List Dialogs</Link>
                         </a>
                     </div>
-                    <div className="col s3">
+                    <div className="col s6 m3">
                         <a className='btn white red-text waves-effect waves-red top-button'>
                             Save
                         </a>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col s6 offset-s3">
+                    <div className="col m6 s12 offset-m3">
                         <div className="row">
                             <div className="col s12 red lighten-4 bb" id="chat-area">
                                 {chat}
