@@ -96,14 +96,14 @@ class DialogChat extends Component {
                 </div>
                 <div className="row">
                     <div className="col s6 m3 offset-m3">
-                        <a className='btn white red-text waves-effect waves-red top-button'>
+                        <a className='btn white red-text waves-effect waves-blue top-button'>
                             <Link to="/dialog/show">List Dialogs</Link>
                         </a>
                     </div>
                     <div className="col s6 m3">
-                        <a className='btn white red-text waves-effect waves-red top-button'>
+                        <button className='btn modal-trigger white red-text waves-effect waves-red top-button' data-target='modal'>
                             Save
-                        </a>
+                        </button>
                     </div>
                 </div>
                 <div className="row">
@@ -132,6 +132,18 @@ class DialogChat extends Component {
                             </div>
                         </div>
                     </div>
+                </div>
+                <div id="modal" className="modal">
+                    <form>
+                        <div className="modal-content">
+                            <h5 className="red-text lighten-2">Dialog title:</h5>
+                            <input placeholder="Enter title" id="dialog_title" type="text" className="validate" maxlength="15"/>
+                        </div>
+                        <div className="modal-footer">
+                            <button className="modal-close waves-effect waves-red btn-flat red-text" type="submit">Save</button>
+                            <button className="modal-close waves-effect waves-blue btn-flat blue-text">Cancel</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         );
