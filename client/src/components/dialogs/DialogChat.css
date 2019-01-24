@@ -19,6 +19,10 @@ h1 {
   margin-bottom: 0;
 }
 
+.top-button {
+  width: 100%;
+}
+
 #chat-area {
   width: 100%;
   min-height: 20em;

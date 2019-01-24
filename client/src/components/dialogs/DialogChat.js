@@ -96,18 +96,14 @@ class DialogChat extends Component {
                 </div>
                 <div className="row">
                     <div className="col s3 offset-s3">
-                        <a className='dropdown-button btn white red-text waves-effect waves-red' href='#' data-activates='menu'>Options <i className="material-icons">arrow_drop_down</i></a>
-                        <ul id='menu' className='dropdown-content'>
-                            <li>
-                                <a>
-                                    <i class="material-icons">list_alt</i>
-                                    <Link to="/dialog/show">Dialogs</Link>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="2_1_typography.html"><i className="material-icons">cloud_upload</i>Save</a>
-                            </li>                        
-                        </ul>
+                        <a className='btn white red-text waves-effect waves-red top-button'>
+                            <Link to="/dialog/show">List Dialogs</Link>
+                        </a>
+                    </div>
+                    <div className="col s3">
+                        <a className='btn white red-text waves-effect waves-red top-button'>
+                            Save
+                        </a>
                     </div>
                 </div>
                 <div className="row">
