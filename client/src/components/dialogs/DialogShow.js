@@ -23,7 +23,9 @@ class DialogShow extends Component {
                                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi harum enim inventore ullam expedita nesciunt ea voluptatem corporis iusto sint?</p>
                                     </div>
                                     <div className="card-action">
+                                        {/*eslint-disable-next-line*/}
                                         <a href="#" className="waves-effect waves-light lighten-2 blue btn left-card-button">Edit</a>
+                                        {/*eslint-disable-next-line*/}
                                         <a href="#" className="waves-effect waves-light lighten-2 red btn">Delete</a>
                                     </div>
                                 </div>
@@ -35,7 +37,9 @@ class DialogShow extends Component {
                                         <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi harum enim inventore ullam expedita nesciunt ea voluptatem corporis iusto sint?</p>
                                     </div>
                                     <div className="card-action">
+                                        {/*eslint-disable-next-line*/}
                                         <a href="#" className="waves-effect waves-light lighten-2 blue btn left-card-button">Edit</a>
+                                        {/*eslint-disable-next-line*/}
                                         <a href="#" className="waves-effect waves-light lighten-2 red btn">Delete</a>
                                     </div>
                                 </div>

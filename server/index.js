@@ -11,7 +11,7 @@ require('dotenv').config({ path: 'variables.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const gravatar = require('gravatar');
 const cors = require('cors');
 const processMessage = require('./process-message');
@@ -23,13 +23,11 @@ const app = express();
 const User = require('./models/User.js');
 
 
-/*
 const mongoDB = process.env.MONGO_URI;
 mongoose
     .connect(mongoDB)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err))
-*/
 
 // Cors
 app.use(cors());

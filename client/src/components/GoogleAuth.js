@@ -37,6 +37,7 @@ class GoogleAuth extends React.Component {
         } else if (this.state.googleSignedIn) {
             return (
                 <div>
+                    {/*eslint-disable-next-line*/}
                     <a
                         className="waves-effect waves-light lighten-2 red btn"
                         onClick={() => this.auth.signOut()}
@@ -46,6 +47,7 @@ class GoogleAuth extends React.Component {
         } else {
             return(
                 <div>
+                    {/*eslint-disable-next-line*/}
                     <a
                         className="waves-effect waves-light lighten-2 red btn"
                         onClick={() => this.auth.signIn()}

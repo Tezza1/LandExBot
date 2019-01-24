@@ -72,7 +72,7 @@ class DialogChat extends Component {
             return (
                 <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
                     <span className="chat-content chip">
-                        <img src={'/img/robot-icon.png'} />
+                        <img src={'/img/robot-icon.png'}  alt="Icon"/>
                         {text}
                         <i className="close material-icons">close</i>
                     </span>
@@ -96,6 +96,7 @@ class DialogChat extends Component {
                 </div>
                 <div className="row">
                     <div className="col s6 m3 offset-m3">
+                        {/*eslint-disable-next-line*/}
                         <a className='btn white red-text waves-effect waves-blue top-button'>
                             <Link to="/dialog/show">List Dialogs</Link>
                         </a>
@@ -122,7 +123,6 @@ class DialogChat extends Component {
                                             type="text" 
                                             value={this.state.userMessage}
                                             onInput={this.handleChange}
-                                            type="text"
                                             autoFocus
                                             placeholder="Enter to send"
                                         />
