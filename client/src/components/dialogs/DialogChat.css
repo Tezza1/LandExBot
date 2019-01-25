@@ -1,24 +1,5 @@
 /* client/src/components/dialogs/DialogChat.css */
 
-#red-write-header {
-    color: #ee6e73;
-}
-
-#robot-image {
-    padding-top: 1em;
-    max-height: 8em;
-    display:block;
-    margin:auto;
-}
-
-h1 {
-    margin-top: 0;
-}
-
-#header-row {
-    margin-bottom: 0;
-}
-
 .top-button {
     width: 100%;
 }

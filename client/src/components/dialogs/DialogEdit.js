@@ -1,9 +1,12 @@
+// client/src/components/dialogs/DialogEdit.js
+
 import React from 'react';
+import PageTitle from '../PageTitle';
 
 const DialogEdit = () => {
     return (
         <div>
-            <h1>DialogEdit -> list all dialogs</h1>
+            <PageTitle title="Dialog Edit"/>
         </div>
     )
 }

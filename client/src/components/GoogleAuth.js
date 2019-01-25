@@ -1,3 +1,5 @@
+// client/src/components/GoogleAuth.js
+
 import React from 'react';
 import './GoogleAuth.css';
 

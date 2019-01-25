@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import { Link } from 'react-router-dom';
 import './DialogChat.css';
+import PageTitle from '../PageTitle';
 
 
 class DialogChat extends Component {
@@ -39,7 +40,9 @@ class DialogChat extends Component {
 
     //  runs on every keystroke to update userMessage
     handleChange = event => {
-        this.setState({ userMessage: event.target.value });
+        this.setState({ 
+            userMessage: event.target.value 
+        });
     };
 
     // called when the user hits the Enter key. It updates the conversation state & sends data to chat route
@@ -56,7 +59,7 @@ class DialogChat extends Component {
             conversation: [...this.state.conversation, msg],
         });
 
-        fetch('http://localhost:5000/dialog/chat', {
+        fetch('http://localhost:5000/dialogs/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -64,7 +67,9 @@ class DialogChat extends Component {
             }),
         });
 
-        this.setState({ userMessage: '' });
+        this.setState({ 
+            userMessage: '' 
+        });
     };
 
     render() {
@@ -80,20 +85,13 @@ class DialogChat extends Component {
             );
         };
 
-        const chat = this.state.conversation.map((e, index) =>
-            ChatBubble(e.text, index, e.user)
+        const chat = this.state.conversation.map((el, index) =>
+            ChatBubble(el.text, index, el.user)
         );
 
         return (
             <div>
-                <div className="row" id="header-row">
-                    <div className="col s12">
-                        <img className="responsive-img" id="robot-image" src={'/img/robot-icon.png'} alt="Language Bot Robot 2" />
-                    </div>
-                    <div className="col s12">
-                        <h1 className="center-align" id ="red-write-header">LangEx Chat</h1>
-                    </div>
-                </div>
+                <PageTitle title="LangEx Chat" />
                 <div className="row">
                     <div className="col s6 m3 offset-m3">
                         {/*eslint-disable-next-line*/}
@@ -136,8 +134,11 @@ class DialogChat extends Component {
                 <div id="modal" className="modal">
                     <form>
                         <div className="modal-content">
-                            <h5 className="red-text lighten-2">Dialog title:</h5>
-                            <input placeholder="Enter title" id="dialog_title" type="text" className="validate" maxlength="15"/>
+                            <h5 className="red-text lighten-2">Dialog details:</h5>
+                            <label for="title">Dialog title:</label>
+                            <input placeholder="Enter title" id="dialog_title" type="text" className="validate" name="title" maxLength="15"/>
+                            <label for="description">Dialog description:</label>
+                            <input placeholder="Enter short description" id="dialog_description" type="text" className="validate" name="description" maxLength="50"/>
                         </div>
                         <div className="modal-footer">
                             <button className="modal-close waves-effect waves-red btn-flat red-text" type="submit">Save</button>
