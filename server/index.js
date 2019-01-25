@@ -1,12 +1,5 @@
 // server/index.js
 
-/*----------------------------------------
-- login with Google
-- send email and name to DB
-- if not in DB then register user
-- if in DB then get and use the User
--------------------------------------------*/
-
 require('dotenv').config({ path: 'variables.env' });
 
 const express = require('express');
@@ -39,13 +32,19 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// Set global variables 
+// TODO: remember to use this......
+app.use(function(req, res, next){
+    res.locals.user = req.user || null;
+    next();
+});
+
 // @route       GET /
 // @desc        Landing page
 // @access      Public
 app.get('/', (req, res) => {
     res.send("hello")
 });
-
 
 // Use routes
 app.use('/users', users);

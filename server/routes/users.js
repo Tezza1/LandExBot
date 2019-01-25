@@ -7,12 +7,18 @@ const gravatar = require('gravatar');
 require('../models/User');
 const User = mongoose.model('users');
 
-router.post('/registration', (req, res) => {
-        // when login, find the user
-    User.findOne({ email: req.body.email })
+// @route       POST /
+// @desc        Login User / Returning JWT token
+// @access      Public
+router.post('/login', (req, res) => {
+    const email = req.body.email;
+    const name = req.body.name;
+
+    User.findOne({ email })
         .then(user => {
             if(user) {
                 // then get that user info
+                res.json(user)
             } else {
                 const avatar = gravatar.url(req.body.email, {
                     s: '200',   // size
@@ -34,26 +40,9 @@ router.post('/registration', (req, res) => {
         })
 })
 
-// @route       POST /
-// @desc        Login User / Returning JWT token
-// @access      Public
-router.post('/login', (req, res) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    
-    // Find user by email
-    User.findOne({email})
-        .then(user => {
-            // Check for user
-            if(!user) {
-                return res.status(404).json({email: 'User not found'});
-            } else {
-                return res.send("User found!")
-            }
-            
-            //
-        })
-})
+router.post('/logout', (req, res) => {
+    req.logout();
+});
 
 
 module.exports = router;

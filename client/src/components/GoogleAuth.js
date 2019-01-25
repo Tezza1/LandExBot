@@ -31,6 +31,29 @@ class GoogleAuth extends React.Component {
         this.setState({
             googleSignedIn: this.auth.isSignedIn.get()
         });
+
+        const userName = this.auth.currentUser.Ab.w3.ig;
+        const userEmail = this.auth.currentUser.Ab.w3.U3;  
+        
+        if(this.state.googleSignedIn) {
+            fetch('http://localhost:5000/users/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: userName,
+                    email: userEmail
+                })
+            })
+        } else {
+            fetch('http://localhost:5000/users/logout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: userName,
+                    email: userEmail
+                })
+            })
+        }
     }
 
     authButton() {
