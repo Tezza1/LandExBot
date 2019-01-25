@@ -1,5 +1,8 @@
-.left-card-button {
-    margin-right: 1em;
+/* client/src/components/dialogs/DialogShow.css */
+
+.card-button {
+    margin-bottom: 0.5em;
+    width: 100%;
 }
 
 @media only screen and (max-width: 600px) {
