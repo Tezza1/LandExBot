@@ -4,7 +4,7 @@ require('dotenv').config({ path: 'variables.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
-// const mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const gravatar = require('gravatar');
 const cors = require('cors');
 
@@ -18,13 +18,12 @@ const dialogs = require('./routes/dialogs');
 const User = require('./models/User.js');
 const Dialog = require('./models/Dialog.js');
 
-/*
 const mongoDB = process.env.MONGO_URI;
 mongoose
     .connect(mongoDB)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err))
-*/
+
 // Cors
 app.use(cors());
 
@@ -32,7 +31,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Set global variables 
+// Set global variables
 // TODO: remember to use this......
 app.use(function(req, res, next){
     res.locals.user = req.user || null;

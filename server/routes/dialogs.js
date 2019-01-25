@@ -48,7 +48,7 @@ router.get('/show', (req, res) => {
 // @route       GET /
 // @desc        Find a particular conversation
 // @access      Private
-router.get('/xxx', (req, res) => {
+router.get('/:id', (req, res) => {
     res.send(
         'Find a conversation'
     );
@@ -57,10 +57,20 @@ router.get('/xxx', (req, res) => {
 // @route       POST /
 // @desc        Save a conversation
 // @access      Private
-router.post('/:id', (req, res) => {
-    res.send(
-        'Save a conversation'
-    );
+router.post('/save', (req, res) => {
+    const newDialog = {
+            title: req.body.title,
+            description: req.body.description,
+            text: req.body.text,
+            // TODO: fix this
+            //user: req.body.id
+            //user: req.user.id
+        };
+        new Dialog(newDialog)
+            .save()
+            .then(idea => {
+                res.redirect('http://localhost:3000/dialog/show');
+            });
 });
 
 // @route       PUT /

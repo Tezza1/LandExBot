@@ -33,8 +33,8 @@ class GoogleAuth extends React.Component {
         });
 
         const userName = this.auth.currentUser.Ab.w3.ig;
-        const userEmail = this.auth.currentUser.Ab.w3.U3;  
-        
+        const userEmail = this.auth.currentUser.Ab.w3.U3;
+
         if(this.state.googleSignedIn) {
             fetch('http://localhost:5000/users/login', {
                 method: 'POST',
