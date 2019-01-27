@@ -47,7 +47,8 @@ class DialogChat extends Component {
         });
     };
 
-    // called when the user hits the Enter key. It updates the conversation state & sends data to chat route
+    // called when the user hits the Enter key.
+    // It updates the conversation state & sends data to chat route
     handleSubmit = (e) => {
         e.preventDefault();
         if (!this.state.userMessage.trim()) return;

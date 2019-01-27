@@ -19,30 +19,12 @@ router.post('/chat', (req, res) => {
 // @desc        List of all conversations
 // @access      Private
 router.get('/show', (req, res) => {
-    res.send({
-                response: [
-                    {
-                        user: 'Terry',
-                        title: 'Dialog 1',
-                        description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.'
-                    },
-                    {
-                        user: 'Terry',
-                        title: 'Dialog 2',
-                        description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi harum enim inventore ullam expedita nesciunt ea voluptatem corporis iusto sint?'
-                    },
-                                        {
-                        user: 'Terry',
-                        title: '',
-                        description: ''
-                    },
-                    {
-                        user: 'Terry',
-                        title: 'Dialog 2',
-                        description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nisi harum enim inventore ullam expedita nesciunt ea voluptatem corporis iusto sint?'
-                    }
-                ]
-   });
+    Dialog.find({user: "5c4afc01c561a1265834fc38"})
+        .then(dialog => {
+            res.send({
+                response: dialog
+            });
+        });
 });
 
 // @route       GET /
@@ -62,9 +44,7 @@ router.post('/save', (req, res) => {
             title: req.body.title,
             description: req.body.description,
             text: req.body.text,
-            // TODO: fix this
-            //user: req.body.id
-            //user: req.user.id
+            user: req.body.id
         };
         new Dialog(newDialog)
             .save()
