@@ -1,6 +1,8 @@
 // client/src/components/GoogleAuth.js
 
 import React from 'react';
+import { connect } from 'react-redux';
+import { signIn, signOut } from '../actions';
 import './GoogleAuth.css';
 
 class GoogleAuth extends React.Component {
@@ -8,7 +10,7 @@ class GoogleAuth extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            googleSignedIn: null
+            // googleSignedIn: null
         };
     }
 
@@ -19,23 +21,27 @@ class GoogleAuth extends React.Component {
                 scope: 'email'
             }).then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance();
-                this.setState({
+
+                this.authChange(this.auth.isSignedIn.get());
+                /*this.setState({
                     googleSignedIn: this.auth.isSignedIn.get()
-                });
+                });*/
                 this.auth.isSignedIn.listen(this.authChange);
             });
         });
     }
 
-    authChange = () => {
-        this.setState({
-            googleSignedIn: this.auth.isSignedIn.get()
-        });
-
+    authChange = (isSignedIn) => {
         const userName = this.auth.currentUser.Ab.w3.ig;
         const userEmail = this.auth.currentUser.Ab.w3.U3;
+        
+        if (isSignedIn) {
+            this.props.signIn(userEmail);
+        } else {
+            this.props.signOut();  
+        }
 
-        if(this.state.googleSignedIn) {
+        if(this.props.isSignedIn) {
             fetch('http://localhost:5000/users/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -58,9 +64,9 @@ class GoogleAuth extends React.Component {
 
 
     authButton() {
-        if (this.state.googleSignedIn === null) {
+        if (this.props.isSignedIn === null) {
             return null;
-        } else if (this.state.googleSignedIn) {
+        } else if (this.props.isSignedIn) {
             return (
                 <div>
                     {/*eslint-disable-next-line*/}
@@ -95,4 +101,10 @@ class GoogleAuth extends React.Component {
     };
 }
 
-export default GoogleAuth;
+const mapStateToProps = (state) => {
+    return { isSignedIn: state.auth.isSignedIn };
+}
+
+export default connect(mapStateToProps, { 
+    signIn, signOut
+})(GoogleAuth);

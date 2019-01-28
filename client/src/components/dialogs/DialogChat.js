@@ -38,6 +38,7 @@ class DialogChat extends Component {
                 conversation: [...this.state.conversation, msg],
             });
         });
+
     }
 
     //  runs on every keystroke to update userMessage

@@ -1,6 +1,7 @@
 // client/src/components/PageTitle.js
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import './PageTitle.css';
 
 const PageTitle = (props) => {
@@ -13,7 +14,11 @@ const PageTitle = (props) => {
                 <h1 className="center-align" id ="red-write-header">{props.title}</h1>
             </div>
         </div>
-    )
-}
+    );
+};
+
+PageTitle.propTypes = {
+    title: PropTypes.string.isRequired
+};
 
 export default PageTitle;
