@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import FloatButton from './FloatButton'
+import FloatButton from './FloatButton';
 import Home from './Home';
 import DialogEdit from './dialogs/DialogEdit';
 import DialogShow from './dialogs/DialogShow';
