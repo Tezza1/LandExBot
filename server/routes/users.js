@@ -10,7 +10,7 @@ const User = mongoose.model('users');
 // @route       POST /
 // @desc        Login User / Returning JWT token
 // @access      Public
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
     const email = req.body.email;
     const name = req.body.name;
 
@@ -37,7 +37,7 @@ router.post('/login', (req, res) => {
                     .then(user => res.json(user))
                     .catch(err => console.log(err));
             }
-        })
+        });
 })
 
 router.post('/logout', (req, res) => {

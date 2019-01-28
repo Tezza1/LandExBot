@@ -18,7 +18,10 @@ const DialogSchema = new Schema({
         required: true
     },
     text: {
-        type: [String],
+        type:  [{
+            text : String,
+            user : String
+        }],
         required: true
     },
     date: {

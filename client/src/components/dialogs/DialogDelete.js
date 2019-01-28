@@ -4,8 +4,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PageTitle from '../PageTitle';
 
-
-class DialogEdit extends Component {
+class DialogDelete extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -19,16 +18,16 @@ class DialogEdit extends Component {
     render() {
         return (
             <div>
-                <PageTitle title="Dialog Edit"/>
+                <PageTitle title="Dialog Delete"/>
                 <div className="row">
                     <div className="col s6 m3 offset-m3">
                         {/*eslint-disable-next-line*/}
-                        <a className='btn white red-text waves-effect waves-blue top-button'>
-                            Save
+                        <a className='btn white red-text waves-effect waves-red top-button'>
+                            Delete
                         </a>
                     </div>
                     <div className="col s6 m3">
-                        <button className='btn white red-text waves-effect waves-red top-button'>
+                        <button className='btn white red-text waves-effect waves-blue top-button'>
                             <Link to="/dialog/show" className="blue-text">Cancel</Link>
                         </button>
                     </div>
@@ -47,4 +46,4 @@ class DialogEdit extends Component {
     }
 }
 
-export default DialogEdit;
+export default DialogDelete;

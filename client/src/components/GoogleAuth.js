@@ -56,6 +56,7 @@ class GoogleAuth extends React.Component {
         }
     }
 
+
     authButton() {
         if (this.state.googleSignedIn === null) {
             return null;

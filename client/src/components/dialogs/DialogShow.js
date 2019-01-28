@@ -1,7 +1,8 @@
 // client/src/components/dialogs/DialogShow.js
 
 import React, { Component } from 'react';
-import PageTitle from '../PageTitle'; 
+import PageTitle from '../PageTitle';
+import { Link } from 'react-router-dom';
 import './DialogShow.css';
 
 class DialogShow extends Component {
@@ -50,7 +51,7 @@ class DialogShow extends Component {
         this.setState({ responseToPost: body });
     };
     */
-     
+
 
     render() {
         const descriptions = this.state.response
@@ -65,9 +66,13 @@ class DialogShow extends Component {
                         </div>
                         <div className="card-action">
                             {/*eslint-disable-next-line*/}
-                            <a href="#" className="waves-effect waves-light lighten-2 blue btn card-button">Edit</a>
+                            <a className="waves-effect waves-light lighten-2 blue btn card-button">
+                                <Link to="/dialog/edit" className="white-text">Edit</Link>
+                            </a>
                             {/*eslint-disable-next-line*/}
-                            <a href="#" className="waves-effect waves-light lighten-2 red btn card-button">Delete</a>
+                            <a className="waves-effect waves-light lighten-2 red btn card-button">
+                                <Link to="/dialog/delete" className="white-text">Delete</Link>
+                            </a>
                         </div>
                     </div>
                 </div>
