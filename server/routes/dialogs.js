@@ -18,8 +18,10 @@ router.post('/chat', (req, res) => {
 // @route       GET /
 // @desc        List of all conversations
 // @access      Private
-router.get('/show', (req, res) => {
-    Dialog.find({user: "5c4afc01c561a1265834fc38"})
+router.post('/show', (req, res) => {
+    const email = req.body.email;
+    // const email = "tshenker@gmail.com"
+    Dialog.find({ user: email })
         .then(dialog => {
             res.send({
                 response: dialog
@@ -30,10 +32,15 @@ router.get('/show', (req, res) => {
 // @route       GET /
 // @desc        Find a particular conversation
 // @access      Private
-router.get('/:id', (req, res) => {
-    res.send(
-        'Find a conversation'
-    );
+router.get('/find/:id', (req, res) => {
+    Dialog.findOne({
+        _id: req.params.id
+    })
+    .then(dialog => {
+            res.send({
+                response: dialog
+            });
+        });
 });
 
 // @route       POST /
@@ -44,7 +51,7 @@ router.post('/save', (req, res) => {
             title: req.body.title,
             description: req.body.description,
             text: req.body.text,
-            user: req.body.id
+            user: req.body.userEmail
         };
         new Dialog(newDialog)
             .save()
@@ -56,19 +63,30 @@ router.post('/save', (req, res) => {
 // @route       PUT /
 // @desc        Update a particular conversation
 // @access      Private
-router.put('/:id', (req, res) => {
-    res.send(
-        'Update a conversation'
-    );
+router.post('/edit/:id', (req, res) => {
+    Dialog.findOne({ _id: req.params.id })
+        .then(dialog => {
+           dialog.title = req.body.title;
+           dialog.details = req.body.details;
+           dialog.text = req.body.text
+           dialog.user = req.body.user
+
+           dialog.save()
+            .then(dialog => {
+                res.redirect('http://localhost:3000/dialog/show');
+            });
+
+        });
 });
 
 // @route       DELETE /
 // @desc        Delete a particular conversation
 // @access      Private
 router.delete('/:id', (req, res) => {
-    res.send(
-        'Delete a conversation'
-    );
+    Dialog.deleteOne({ _id: req.params.id })
+        .then(() => {
+            res.redirect('http://localhost:3000/dialog/show');
+        });
 });
 
 

@@ -6,10 +6,15 @@ import { Link } from 'react-router-dom';
 const FloatButton = (props) => {
     return (
         <div className="fixed-action-btn">
-            {/*eslint-disable-next-line*/}
-            <a className={`btn-floating btn-large waves-effect waves-light lighten-2 red ${props.action}`}>
-                <Link to="/dialog/chat"><i className="material-icons">textsms</i></Link>
-            </a>
+            {props.isSignedIn ? (
+                <Link to="/dialog/chat" className="btn-floating btn-large waves-effect waves-light lighten-2 red">
+                    <i className="material-icons">textsms</i>
+                </Link>
+                ) : (
+                <a href="/" className="btn-floating btn-large disabled">
+                    <i className="material-icons">textsms</i>
+                </a>
+            )}
         </div>
     );
 }

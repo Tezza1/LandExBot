@@ -15,7 +15,8 @@ class DialogChat extends Component {
             userMessage: '',  // the value of whatever the user types into the input field
             conversation: [],  // array that will hold each message in the conversation
             title: '',
-            description: ''
+            description: '',
+            userEmail: ''
         };
     }
 
@@ -38,6 +39,10 @@ class DialogChat extends Component {
                 conversation: [...this.state.conversation, msg],
             });
         });
+    }
+
+    // TODO: can delete this
+    componentDidUpdate() {
 
     }
 
@@ -78,7 +83,8 @@ class DialogChat extends Component {
 
     handleTitleChange = (e) => {
         this.setState({
-            title: e.target.value
+            title: e.target.value,
+            userEmail: this.props.userEmail
         });
     };
 
@@ -97,12 +103,14 @@ class DialogChat extends Component {
                 title: this.state.title,
                 description: this.state.description,
                 text: this.state.conversation,
-                id: "5c4afc01c561a1265834fc38"
+                userEmail: this.state.userEmail
             })
         });
     }
 
+
     render() {
+
         const ChatBubble = (text, i, className) => {
             return (
                 <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
@@ -124,10 +132,9 @@ class DialogChat extends Component {
                 <PageTitle title="LangEx Chat" />
                 <div className="row">
                     <div className="col s6 m3 offset-m3">
-                        {/*eslint-disable-next-line*/}
-                        <a className='btn white red-text waves-effect waves-blue top-button'>
-                            <Link to="/dialog/show">List Dialogs</Link>
-                        </a>
+                        <Link to="/dialog/show" className='btn white blue-text waves-effect waves-blue top-button'>
+                            List Dialogs
+                        </Link>
                     </div>
                     <div className="col s6 m3">
                         <button className='btn modal-trigger white red-text waves-effect waves-red top-button' data-target='modal'>

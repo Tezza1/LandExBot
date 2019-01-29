@@ -2,6 +2,8 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Navbar from './Navbar';
 import FloatButton from './FloatButton';
 import Home from './Home';
@@ -14,8 +16,12 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            floatButton: '',
+
         }
+    }
+
+    componentDidMount() {
+
     }
 
     render() {
@@ -25,11 +31,17 @@ class App extends Component {
                     <div>
                         <Navbar />
                         <Route path="/" exact component={Home} />
-                        <Route path="/dialog/edit" exact component={DialogEdit} />
-                        <Route path="/dialog/show" exact component={DialogShow} />
-                        <Route path="/dialog/chat" exact component={DialogChat} />
-                        <Route path="/dialog/delete" exact component={DialogDelete} />
-                        <FloatButton action={this.state.floatButton}/>
+                        <Route path="/dialog/edit/:id" component={DialogEdit} />
+                        <Route
+                            path="/dialog/show"
+                            render={(routeProps) => (<DialogShow {...routeProps} userEmail={this.props.userEmail}/>)}
+                        />
+                        <Route
+                            path="/dialog/chat"
+                            render={(routeProps) => (<DialogChat {...routeProps} userEmail={this.props.userEmail}/>)}
+                        />
+                        <Route path="/dialog/delete/:id" component={DialogDelete} />
+                        <FloatButton isSignedIn={this.props.isSignedIn}/>
                     </div>
                 </BrowserRouter>
             </div>
@@ -37,4 +49,11 @@ class App extends Component {
     }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        isSignedIn: state.auth.isSignedIn,
+        userEmail: state.auth.userEmail
+    };
+}
+
+export default connect(mapStateToProps)(App);

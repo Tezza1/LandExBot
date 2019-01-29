@@ -8,7 +8,6 @@ import './DialogShow.css';
 class DialogShow extends Component {
     constructor(props) {
         super(props);
-
         this.state = ({
             response: [
                 {
@@ -30,28 +29,22 @@ class DialogShow extends Component {
     }
 
     callApi = async () => {
-        const response = await fetch('http://localhost:5000/dialogs/show');
+        const response = await fetch('http://localhost:5000/dialogs/show', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: "tshenker@gmail.com" })
+        });
         const body = await response.json();
         if (response.status !== 200) throw Error(body.message);
         return body;
     };
 
-    /*
-    // send data
-    handleSubmit = async e => {
-        e.preventDefault();
-        const response = await fetch('/api/world', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ post: this.state.post }),
-        });
-        const body = await response.text();
-        this.setState({ responseToPost: body });
-    };
-    */
-
+    componentDidUpdate(){
+        this.user = this.props.userEmail
+        console.log(this.user)
+    }
 
     render() {
         const descriptions = this.state.response
@@ -65,14 +58,12 @@ class DialogShow extends Component {
                             <p>{el.description}</p>
                         </div>
                         <div className="card-action">
-                            {/*eslint-disable-next-line*/}
-                            <a className="waves-effect waves-light lighten-2 blue btn card-button">
-                                <Link to="/dialog/edit" className="white-text">Edit</Link>
-                            </a>
-                            {/*eslint-disable-next-line*/}
-                            <a className="waves-effect waves-light lighten-2 red btn card-button">
-                                <Link to="/dialog/delete" className="white-text">Delete</Link>
-                            </a>
+                            <Link to={`/dialog/edit/${el._id}`} className="white-text waves-effect waves-light lighten-2 blue btn card-button">
+                                Edit
+                            </Link>
+                            <Link to={`/dialog/delete/${el._id}`} className="white-text waves-effect waves-light lighten-2 red btn card-button">
+                                Delete
+                            </Link>
                         </div>
                     </div>
                 </div>

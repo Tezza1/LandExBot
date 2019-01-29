@@ -32,13 +32,13 @@ class GoogleAuth extends React.Component {
     }
 
     authChange = (isSignedIn) => {
-        const userName = this.auth.currentUser.Ab.w3.ig;
-        const userEmail = this.auth.currentUser.Ab.w3.U3;
-        
+        // const userName = this.auth.currentUser.Ab.w3.ig;
+        // const userEmail = this.auth.currentUser.Ab.w3.U3;
+
         if (isSignedIn) {
-            this.props.signIn(userEmail);
+            this.props.signIn(this.auth.currentUser.Ab.w3.U3);
         } else {
-            this.props.signOut();  
+            this.props.signOut();
         }
 
         if(this.props.isSignedIn) {
@@ -46,8 +46,8 @@ class GoogleAuth extends React.Component {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: userName,
-                    email: userEmail
+                    // name: userName,
+                    // email: userEmail
                 })
             });
         } else {
@@ -55,8 +55,8 @@ class GoogleAuth extends React.Component {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: userName,
-                    email: userEmail
+                    // name: userName,
+                    // email: userEmail
                 })
             });
         }
@@ -105,6 +105,6 @@ const mapStateToProps = (state) => {
     return { isSignedIn: state.auth.isSignedIn };
 }
 
-export default connect(mapStateToProps, { 
+export default connect(mapStateToProps, {
     signIn, signOut
 })(GoogleAuth);
