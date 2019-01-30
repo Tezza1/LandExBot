@@ -36,7 +36,7 @@ app.use(bodyParser.json());
 // @desc        Landing page
 // @access      Public
 app.get('/', (req, res) => {
-    res.send("hello");
+
 });
 
 // Use routes
