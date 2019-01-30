@@ -1,3 +1,5 @@
+// client/src/actions/index.js
+
 import { SIGN_IN, SIGN_OUT } from './types';
 
 export const signIn = (userEmail) => {

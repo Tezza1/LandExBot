@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PageTitle from '../PageTitle';
 
 
@@ -13,7 +14,8 @@ class DialogEdit extends Component {
             title: '',
             description: '',
             user: '',
-            text: []
+            text: [],
+            toDashboard: false
         };
     }
 
@@ -30,7 +32,7 @@ class DialogEdit extends Component {
                     title: data.response.title,
                     description: data.response.description,
                     text: data.response.text,
-                    user: data.response.user
+                    user: data.response.user,
                 })
             })
             .catch(error => console.log(error));
@@ -42,20 +44,29 @@ class DialogEdit extends Component {
         });
     };
 
-    handleClick = () => {
+    handleClick = (e) => {
+        e.preventDefault();
         fetch(`http://localhost:5000/dialogs/edit/${this.props.match.params.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 title: this.state.title,
                 description: this.state.description,
-                text: this.state.conversation,
-                user: this.state.user
+                text: this.state.text,
+                user: this.state.user,
             })
+        });
+
+        this.setState({
+            toDashboard: true
         });
     }
 
     render() {
+        if (this.state.toDashboard === true) {
+            return <Redirect to={`/dialog/show/${this.state.user}`} />
+        }
+
         const ChatBubble = (text, i, className) => {
             return (
                 <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
@@ -80,13 +91,13 @@ class DialogEdit extends Component {
                         <div className="col s6 m3 offset-m3">
                             <button
                                 className='btn white red-text waves-effect waves-blue top-button'
-                                onClick={() => this.handleClick}
+                                onClick={this.handleClick}
                             >
                                 Save
                             </button>
                         </div>
                         <div className="col s6 m3">
-                            <Link to="/dialog/show" className="blue-text btn white red-text waves-effect waves-red top-button">
+                            <Link to={`/dialog/show/${this.state.user}`} className="blue-text btn white red-text waves-effect waves-red top-button">
                                 Cancel
                             </Link>
                         </div>

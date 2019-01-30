@@ -15,5 +15,10 @@
     #text-color {
         margin-left: 0;
     }
+
+    #nav-icon {
+        margin: 0;
+        padding: 0;
+    }
 }
 

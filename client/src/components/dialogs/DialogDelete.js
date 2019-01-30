@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PageTitle from '../PageTitle';
 
 class DialogDelete extends Component {
@@ -12,7 +13,8 @@ class DialogDelete extends Component {
             title: '',
             description: '',
             user: '',
-            text: []
+            text: [],
+            toDashboard: false
         };
     }
 
@@ -35,7 +37,29 @@ class DialogDelete extends Component {
             .catch(error => console.log(error));
     };
 
+    handleClick = (e) => {
+        e.preventDefault();
+        fetch(`http://localhost:5000/dialogs/delete/${this.props.match.params.id}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                title: this.state.title,
+                description: this.state.description,
+                text: this.state.text,
+                user: this.state.user,
+            })
+        });
+
+        this.setState({
+            toDashboard: true
+        });
+    }
+
     render() {
+        if (this.state.toDashboard === true) {
+            return <Redirect to={`/dialog/show/${this.state.user}`} />
+        }
+
         const ChatBubble = (text, i, className) => {
             return (
                 <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
@@ -57,14 +81,16 @@ class DialogDelete extends Component {
                 <form>
                     <div className="row">
                         <div className="col s6 m3 offset-m3">
-                            {/*eslint-disable-next-line*/}
-                            <a className='btn white red-text waves-effect waves-red top-button'>
+                            <button 
+                                className='btn white red-text waves-effect waves-red top-button'
+                                onClick={this.handleClick}
+                            >
                                 Delete
-                            </a>
+                            </button>
                         </div>
                         <div className="col s6 m3">
                             <button className='btn white red-text waves-effect waves-blue top-button'>
-                                <Link to="/dialog/show" className="blue-text">Cancel</Link>
+                                <Link to={`/dialog/show/${this.state.user}`} className="blue-text">Cancel</Link>
                             </button>
                         </div>
                     </div>

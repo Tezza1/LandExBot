@@ -21,30 +21,18 @@ class DialogShow extends Component {
 
     componentDidMount() {
         this.callApi()
-            .then(res => {
-                this.setState({ response: res.response });
-                console.log(res);
-            })
-            .catch(err => console.log(err));
     }
 
     callApi = async () => {
-        const response = await fetch('http://localhost:5000/dialogs/show', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email: "tshenker@gmail.com" })
-        });
-        const body = await response.json();
-        if (response.status !== 200) throw Error(body.message);
-        return body;
+        fetch(`http://localhost:5000/dialogs/show/${this.props.match.params.id}`)
+            .then(response => response.json())
+            .then(data => {
+                this.setState({
+                    response: data.response
+                })
+            })
+            .catch(error => console.log(error));
     };
-
-    componentDidUpdate(){
-        this.user = this.props.userEmail
-        console.log(this.user)
-    }
 
     render() {
         const descriptions = this.state.response

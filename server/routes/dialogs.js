@@ -18,9 +18,8 @@ router.post('/chat', (req, res) => {
 // @route       GET /
 // @desc        List of all conversations
 // @access      Private
-router.post('/show', (req, res) => {
-    const email = req.body.email;
-    // const email = "tshenker@gmail.com"
+router.get('/show/:id', (req, res) => {
+    const email = req.params.id;
     Dialog.find({ user: email })
         .then(dialog => {
             res.send({
@@ -55,8 +54,8 @@ router.post('/save', (req, res) => {
         };
         new Dialog(newDialog)
             .save()
-            .then(idea => {
-                res.redirect('http://localhost:3000/dialog/show');
+            .then(dialog => {
+                // res.redirect('http://localhost:3000/dialog/show');
             });
 });
 
@@ -72,8 +71,8 @@ router.post('/edit/:id', (req, res) => {
            dialog.user = req.body.user
 
            dialog.save()
-            .then(dialog => {
-                res.redirect('http://localhost:3000/dialog/show');
+            .then(() => {
+
             });
 
         });
@@ -82,12 +81,11 @@ router.post('/edit/:id', (req, res) => {
 // @route       DELETE /
 // @desc        Delete a particular conversation
 // @access      Private
-router.delete('/:id', (req, res) => {
+router.post('/:id', (req, res) => {
     Dialog.deleteOne({ _id: req.params.id })
         .then(() => {
-            res.redirect('http://localhost:3000/dialog/show');
+
         });
 });
-
 
 module.exports = router;

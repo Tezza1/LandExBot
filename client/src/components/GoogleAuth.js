@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { signIn, signOut } from '../actions';
 import './GoogleAuth.css';
 
@@ -10,7 +11,7 @@ class GoogleAuth extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            // googleSignedIn: null
+
         };
     }
 
@@ -21,17 +22,14 @@ class GoogleAuth extends React.Component {
                 scope: 'email'
             }).then(() => {
                 this.auth = window.gapi.auth2.getAuthInstance();
-
                 this.authChange(this.auth.isSignedIn.get());
-                /*this.setState({
-                    googleSignedIn: this.auth.isSignedIn.get()
-                });*/
                 this.auth.isSignedIn.listen(this.authChange);
             });
         });
     }
 
     authChange = (isSignedIn) => {
+        // TODO: need this?
         // const userName = this.auth.currentUser.Ab.w3.ig;
         // const userEmail = this.auth.currentUser.Ab.w3.U3;
 
@@ -46,6 +44,7 @@ class GoogleAuth extends React.Component {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    // TODO: need this?
                     // name: userName,
                     // email: userEmail
                 })
@@ -55,6 +54,7 @@ class GoogleAuth extends React.Component {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
+                    // TODO: need this?
                     // name: userName,
                     // email: userEmail
                 })
@@ -71,17 +71,21 @@ class GoogleAuth extends React.Component {
                 <div>
                     {/*eslint-disable-next-line*/}
                     <a
-                        className="waves-effect waves-light lighten-2 red btn"
+                        className="waves-effect waves-light lighten-2 red btn-small"
                         onClick={() => this.auth.signOut()}
-                    ><i className="material-icons left">account_circle</i>Sign out</a>
+                    >
+                        <i className="material-icons left" id="nav-icon">account_circle</i>
+                        Sign out
+                    </a>
                 </div>
             );
         } else {
             return(
                 <div>
+                    <Redirect to='/' />
                     {/*eslint-disable-next-line*/}
                     <a
-                        className="waves-effect waves-light lighten-2 red btn"
+                        className="waves-effect waves-light lighten-2 red btn-small"
                         onClick={() => this.auth.signIn()}
                     >
                         <img className="responsive-img" id="navbar-button-icon" src={'/img/google_logo.png'} alt="Google logo" />
@@ -93,7 +97,7 @@ class GoogleAuth extends React.Component {
     }
 
     render() {
-        return(
+        return (
             <div>
                 {this.authButton()}
             </div>

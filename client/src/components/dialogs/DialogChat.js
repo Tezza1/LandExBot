@@ -16,7 +16,7 @@ class DialogChat extends Component {
             conversation: [],  // array that will hold each message in the conversation
             title: '',
             description: '',
-            userEmail: ''
+            userEmail: 'tshenker@gmail.com'
         };
     }
 
@@ -132,7 +132,7 @@ class DialogChat extends Component {
                 <PageTitle title="LangEx Chat" />
                 <div className="row">
                     <div className="col s6 m3 offset-m3">
-                        <Link to="/dialog/show" className='btn white blue-text waves-effect waves-blue top-button'>
+                        <Link to={`/dialog/show/${this.state.userEmail}`} className='btn white blue-text waves-effect waves-blue top-button'>
                             List Dialogs
                         </Link>
                     </div>
