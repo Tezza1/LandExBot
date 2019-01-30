@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import Pusher from 'pusher-js';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './DialogChat.css';
 import PageTitle from '../PageTitle';
 
@@ -16,7 +17,8 @@ class DialogChat extends Component {
             conversation: [],  // array that will hold each message in the conversation
             title: '',
             description: '',
-            userEmail: 'tshenker@gmail.com'
+            user: 'tshenker@gmail.com',
+            toDashboard: false
         };
     }
 
@@ -39,11 +41,6 @@ class DialogChat extends Component {
                 conversation: [...this.state.conversation, msg],
             });
         });
-    }
-
-    // TODO: can delete this
-    componentDidUpdate() {
-
     }
 
     //  runs on every keystroke to update userMessage
@@ -81,20 +78,14 @@ class DialogChat extends Component {
         });
     };
 
-    handleTitleChange = (e) => {
+    handleChange2 = (e) => {
         this.setState({
-            title: e.target.value,
-            userEmail: this.props.userEmail
+            [e.target.name]: e.target.value,
+            user: this.props.userEmail
         });
     };
 
-    handleDescChange = (e) => {
-        this.setState({
-            description: e.target.value
-        });
-    };
-
-    handleSubmitSave = (e) => {
+    handleClick = (e) => {
         e.preventDefault();
         fetch('http://localhost:5000/dialogs/save', {
             method: 'POST',
@@ -103,13 +94,20 @@ class DialogChat extends Component {
                 title: this.state.title,
                 description: this.state.description,
                 text: this.state.conversation,
-                userEmail: this.state.userEmail
+                user: this.state.user
             })
+        });
+
+        this.setState({
+            toDashboard: true
         });
     }
 
 
     render() {
+        if (this.state.toDashboard === true) {
+            return <Redirect to={`/dialog/show/${this.state.user}`} />
+        }
 
         const ChatBubble = (text, i, className) => {
             return (
@@ -130,79 +128,75 @@ class DialogChat extends Component {
         return (
             <div>
                 <PageTitle title="LangEx Chat" />
-                <div className="row">
-                    <div className="col s6 m3 offset-m3">
-                        <Link to={`/dialog/show/${this.state.userEmail}`} className='btn white blue-text waves-effect waves-blue top-button'>
-                            List Dialogs
-                        </Link>
+                <form onSubmit={this.handleSubmitSave}>
+                    <div className="row">
+                        <div className="col s6 m3 offset-m3">
+                            <Link to={`/dialog/show/${this.state.userEmail}`} className='btn white blue-text waves-effect waves-blue top-button'>
+                                List Dialogs
+                            </Link>
+                        </div>
+                        <div className="col s6 m3">
+                            <button 
+                                className='btn modal-trigger white red-text waves-effect waves-red top-button'
+                                onClick={this.handleClick} 
+                            >
+                                Save
+                            </button>
+                        </div>
                     </div>
-                    <div className="col s6 m3">
-                        <button className='btn modal-trigger white red-text waves-effect waves-red top-button' data-target='modal'>
-                            Save
-                        </button>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col m6 s12 offset-m3">
-                        <div className="row">
-                            <div className="col s12 red lighten-4 bb" id="chat-area">
-                                {chat}
+                    <div className="row">
+                        <div className="col m6 s12 offset-m3">
+                            <div className="row">
+                                <label htmlFor="title">Title</label>
+                                <input
+                                    type="text"
+                                    name="title"
+                                    maxLength="15"
+                                    required
+                                    value={this.state.title}
+                                    onChange={this.handleChange2}
+                                />
+                            </div>
+                            <div className="row">
+                                <label htmlFor="description">Description</label>
+                                <input
+                                    type="text"
+                                    name="description"
+                                    maxLength="50"
+                                    value={this.state.description}
+                                    onChange={this.handleChange2}
+                                    required
+                                />
                             </div>
                         </div>
-                        <div className="row">
-                            <div className="col s12">
-                                <form onSubmit={this.handleSubmit}>
-                                    <div className="input-field">
-                                        <input
-                                            id="message"
-                                            type="text"
-                                            value={this.state.userMessage}
-                                            onInput={this.handleChange}
-                                            autoFocus
-                                            placeholder="Enter to send"
-                                        />
-                                        <label htmlFor="message">Message</label>
-                                    </div>
-                                </form>
+                    </div>
+                    <div className="row">
+                        <div className="col m6 s12 offset-m3">
+                            <div className="row">
+                                <div className="col s12 red lighten-4 bb" id="chat-area">
+                                    {chat}
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col s12">
+                                    <form onSubmit={this.handleSubmit}>
+                                        <div className="input-field">
+                                            <input
+                                                id="message"
+                                                type="text"
+                                                value={this.state.userMessage}
+                                                onInput={this.handleChange}
+                                                autoFocus
+                                                placeholder="Enter to send"
+                                            />
+                                            <label htmlFor="message">Message</label>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="modal" className="modal">
-                    <form onSubmit={this.handleSubmitSave}>
-                        <div className="modal-content">
-                            <h5 className="red-text lighten-2">Dialog details:</h5>
-                            <label htmlFor="title">Dialog title:</label>
-                            <input
-                                placeholder="Enter title"
-                                id="dialog_title"
-                                type="text"
-                                value={this.state.title}
-                                onChange={this.handleTitleChange}
-                                className="validate"
-                                name="title"
-                                maxLength="15"
-                                required
-                            />
-                            <label htmlFor="description">Dialog description:</label>
-                            <input
-                                placeholder="Enter short description"
-                                id="dialog_description"
-                                type="text"
-                                onChange={this.handleDescChange}
-                                value={this.state.description}
-                                className="validate"
-                                name="description"
-                                maxLength="50"
-                                required
-                            />
-                        </div>
-                        <div className="modal-footer">
-                            <button className="waves-effect waves-red btn-flat red-text" type="submit">Save</button>
-                            <button className="modal-close waves-effect waves-blue btn-flat blue-text">Cancel</button>
-                        </div>
-                    </form>
-                </div>
+                </form>
             </div>
         );
     }
