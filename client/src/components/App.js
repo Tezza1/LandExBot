@@ -13,6 +13,12 @@ import DialogChat from './dialogs/DialogChat';
 import DialogDelete from './dialogs/DialogDelete';
 
 const App = (props) => {
+    /*
+    <Route
+        path="/dialog/chat/:id"
+        render={(routeProps) => (<DialogChat {...routeProps} userEmail={props.userEmail}/>)}
+    />
+    */
     return (
         <div className="App">
             <BrowserRouter>
@@ -20,14 +26,8 @@ const App = (props) => {
                     <Navbar />
                     <Route path="/" exact component={Home} />
                     <Route path="/dialog/edit/:id" component={DialogEdit} />
-                    <Route
-                        path="/dialog/show/:id"
-                        render={(routeProps) => (<DialogShow {...routeProps} userEmail={props.userEmail}/>)}
-                    />
-                    <Route
-                        path="/dialog/chat/:id"
-                        render={(routeProps) => (<DialogChat {...routeProps} userEmail={props.userEmail}/>)}
-                    />
+                    <Route path="/dialog/show/:id" component={DialogShow} />
+                    <Route path="/dialog/chat/:id" component={DialogChat} />
                     <Route path="/dialog/delete/:id" component={DialogDelete} />
                     <FloatButton isSignedIn={props.isSignedIn} user={props.userEmail}/>
                 </div>

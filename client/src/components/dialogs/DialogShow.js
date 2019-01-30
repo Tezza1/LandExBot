@@ -15,7 +15,7 @@ class DialogShow extends Component {
                     title: '',
                     description: ''
                 }
-            ]
+            ],
         })
     }
 

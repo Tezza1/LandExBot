@@ -44,8 +44,9 @@ class DialogEdit extends Component {
         });
     };
 
-    handleClick = (e) => {
+    handleSubmit = (e) => {
         e.preventDefault();
+
         fetch(`http://localhost:5000/dialogs/edit/${this.props.match.params.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -53,7 +54,6 @@ class DialogEdit extends Component {
                 title: this.state.title,
                 description: this.state.description,
                 text: this.state.text,
-                user: this.state.user,
             })
         });
 
@@ -73,7 +73,7 @@ class DialogEdit extends Component {
                     <span className="chat-content chip">
                         <img src={'/img/robot-icon.png'}  alt="Icon"/>
                         {text}
-                        <i className="close material-icons">close</i>
+                        {/*<i className="close material-icons">close</i>*/}
                     </span>
                 </div>
             );
@@ -86,12 +86,11 @@ class DialogEdit extends Component {
         return (
             <div>
                 <PageTitle title="Dialog Edit"/>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col s6 m3 offset-m3">
                             <button
                                 className='btn white red-text waves-effect waves-blue top-button'
-                                onClick={this.handleClick}
                             >
                                 Save
                             </button>
@@ -127,7 +126,7 @@ class DialogEdit extends Component {
                                 />
                             </div>
                             <div className="row">
-                                <div className="col s12 red lighten-4 bb" id="chat-area">
+                                <div className="col s12 red lighten-4 bb" id="chat-area" name="chat">
                                 {chat}
                                 </div>
                             </div>

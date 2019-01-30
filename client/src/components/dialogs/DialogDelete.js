@@ -39,14 +39,12 @@ class DialogDelete extends Component {
 
     handleClick = (e) => {
         e.preventDefault();
+
         fetch(`http://localhost:5000/dialogs/delete/${this.props.match.params.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                title: this.state.title,
-                description: this.state.description,
-                text: this.state.text,
-                user: this.state.user,
+                _id: this.state._id
             })
         });
 
@@ -81,7 +79,7 @@ class DialogDelete extends Component {
                 <form>
                     <div className="row">
                         <div className="col s6 m3 offset-m3">
-                            <button 
+                            <button
                                 className='btn white red-text waves-effect waves-red top-button'
                                 onClick={this.handleClick}
                             >

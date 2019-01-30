@@ -65,10 +65,9 @@ router.post('/save', (req, res) => {
 router.post('/edit/:id', (req, res) => {
     Dialog.findOne({ _id: req.params.id })
         .then(dialog => {
-           dialog.title = req.body.title;
-           dialog.details = req.body.details;
-           dialog.text = req.body.text
-           dialog.user = req.body.user
+            dialog.title = req.body.title;
+            dialog.description = req.body.description;
+            dialog.text = req.body.text
 
            dialog.save()
             .then(() => {
@@ -81,7 +80,7 @@ router.post('/edit/:id', (req, res) => {
 // @route       DELETE /
 // @desc        Delete a particular conversation
 // @access      Private
-router.post('/:id', (req, res) => {
+router.post('/delete/:id', (req, res) => {
     Dialog.deleteOne({ _id: req.params.id })
         .then(() => {
 
