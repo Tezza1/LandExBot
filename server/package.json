@@ -22,7 +22,6 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "gravatar": "^1.8.0",
-    "mongodb": "^3.1.13",
     "mongoose": "^5.4.4",
     "node-fetch": "^2.3.0",
     "pusher": "^2.2.0"

@@ -17,7 +17,7 @@ class DialogChat extends Component {
             conversation: [],  // array that will hold each message in the conversation
             title: '',
             description: '',
-            user: 'tshenker@gmail.com',
+            user: '',
             toDashboard: false
         };
     }
@@ -41,6 +41,10 @@ class DialogChat extends Component {
                 conversation: [...this.state.conversation, msg],
             });
         });
+
+        this.setState({
+            user: this.props.match.params.id
+        })
     }
 
     //  runs on every keystroke to update userMessage
@@ -80,8 +84,7 @@ class DialogChat extends Component {
 
     handleChange2 = (e) => {
         this.setState({
-            [e.target.name]: e.target.value,
-            user: this.props.userEmail
+            [e.target.name]: e.target.value
         });
     };
 
@@ -128,48 +131,48 @@ class DialogChat extends Component {
         return (
             <div>
                 <PageTitle title="LangEx Chat" />
+                <div className="row">
+                    <div className="col s6 m3 offset-m3">
+                        <Link to={`/dialog/show/${this.state.user}`} className='btn white blue-text waves-effect waves-blue top-button'>
+                            List Dialogs
+                        </Link>
+                    </div>
+                    <div className="col s6 m3">
+                        <button
+                            className='btn white red-text waves-effect waves-red top-button'
+                            onClick={this.handleClick}
+                        >
+                            Save
+                        </button>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col m6 s12 offset-m3">
+                        <div className="row">
+                            <label htmlFor="title">Title</label>
+                            <input
+                                type="text"
+                                name="title"
+                                maxLength="15"
+                                required
+                                value={this.state.title}
+                                onChange={this.handleChange2}
+                            />
+                        </div>
+                        <div className="row">
+                            <label htmlFor="description">Description</label>
+                            <input
+                                type="text"
+                                name="description"
+                                maxLength="50"
+                                value={this.state.description}
+                                onChange={this.handleChange2}
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
                 <form onSubmit={this.handleSubmitSave}>
-                    <div className="row">
-                        <div className="col s6 m3 offset-m3">
-                            <Link to={`/dialog/show/${this.state.userEmail}`} className='btn white blue-text waves-effect waves-blue top-button'>
-                                List Dialogs
-                            </Link>
-                        </div>
-                        <div className="col s6 m3">
-                            <button 
-                                className='btn modal-trigger white red-text waves-effect waves-red top-button'
-                                onClick={this.handleClick} 
-                            >
-                                Save
-                            </button>
-                        </div>
-                    </div>
-                    <div className="row">
-                        <div className="col m6 s12 offset-m3">
-                            <div className="row">
-                                <label htmlFor="title">Title</label>
-                                <input
-                                    type="text"
-                                    name="title"
-                                    maxLength="15"
-                                    required
-                                    value={this.state.title}
-                                    onChange={this.handleChange2}
-                                />
-                            </div>
-                            <div className="row">
-                                <label htmlFor="description">Description</label>
-                                <input
-                                    type="text"
-                                    name="description"
-                                    maxLength="50"
-                                    value={this.state.description}
-                                    onChange={this.handleChange2}
-                                    required
-                                />
-                            </div>
-                        </div>
-                    </div>
                     <div className="row">
                         <div className="col m6 s12 offset-m3">
                             <div className="row">

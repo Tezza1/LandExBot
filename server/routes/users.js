@@ -10,14 +10,13 @@ const User = mongoose.model('users');
 // @route       POST /
 // @desc        Login User / Returning JWT token
 // @access      Public
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res) => {
     const email = req.body.email;
     const name = req.body.name;
 
     User.findOne({ email })
         .then(user => {
             if(user) {
-                // then get that user info
                 res.json(user)
             } else {
                 const avatar = gravatar.url(req.body.email, {
@@ -40,7 +39,7 @@ router.post('/login', (req, res, next) => {
         });
 })
 
-router.post('/logout', (req, res) => {
+router.get('/logout', (req, res) => {
     req.logout();
 });
 

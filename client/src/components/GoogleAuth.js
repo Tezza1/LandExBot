@@ -11,7 +11,8 @@ class GoogleAuth extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            user: '',
+            email: ''
         };
     }
 
@@ -29,14 +30,21 @@ class GoogleAuth extends React.Component {
     }
 
     authChange = (isSignedIn) => {
-        // TODO: need this?
-        // const userName = this.auth.currentUser.Ab.w3.ig;
-        // const userEmail = this.auth.currentUser.Ab.w3.U3;
 
         if (isSignedIn) {
             this.props.signIn(this.auth.currentUser.Ab.w3.U3);
+
+            this.setState({
+                user: this.auth.currentUser.Ab.w3.ig,
+                email: this.auth.currentUser.Ab.w3.U3
+            })
         } else {
             this.props.signOut();
+
+            this.setState({
+                user: '',
+                email: ''
+            })
         }
 
         if(this.props.isSignedIn) {
@@ -44,21 +52,19 @@ class GoogleAuth extends React.Component {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    // TODO: need this?
-                    // name: userName,
-                    // email: userEmail
+                    name: this.state.name,
+                    email: this.state.email
                 })
             });
         } else {
-            fetch('http://localhost:5000/users/logout', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    // TODO: need this?
-                    // name: userName,
-                    // email: userEmail
-                })
-            });
+            // fetch('http://localhost:5000/users/logout', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({
+            //         name: this.state.name,
+            //         email: this.state.email
+            //     })
+            // });
         }
     }
 

@@ -25,11 +25,11 @@ const App = (props) => {
                         render={(routeProps) => (<DialogShow {...routeProps} userEmail={props.userEmail}/>)}
                     />
                     <Route
-                        path="/dialog/chat"
+                        path="/dialog/chat/:id"
                         render={(routeProps) => (<DialogChat {...routeProps} userEmail={props.userEmail}/>)}
                     />
                     <Route path="/dialog/delete/:id" component={DialogDelete} />
-                    <FloatButton isSignedIn={props.isSignedIn}/>
+                    <FloatButton isSignedIn={props.isSignedIn} user={props.userEmail}/>
                 </div>
             </BrowserRouter>
         </div>

@@ -50,7 +50,7 @@ router.post('/save', (req, res) => {
             title: req.body.title,
             description: req.body.description,
             text: req.body.text,
-            user: req.body.userEmail
+            user: req.body.user
         };
         new Dialog(newDialog)
             .save()
