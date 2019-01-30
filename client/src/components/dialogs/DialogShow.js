@@ -24,7 +24,7 @@ class DialogShow extends Component {
     }
 
     callApi = async () => {
-        fetch(`http://localhost:5000/dialogs/show/${this.props.match.params.id}`)
+        fetch(`/dialogs/show/${this.props.match.params.id}`)
             .then(response => response.json())
             .then(data => {
                 this.setState({

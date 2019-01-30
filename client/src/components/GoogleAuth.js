@@ -48,7 +48,7 @@ class GoogleAuth extends React.Component {
         }
 
         if(this.props.isSignedIn) {
-            fetch('http://localhost:5000/users/login', {
+            fetch('/users/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -57,14 +57,14 @@ class GoogleAuth extends React.Component {
                 })
             });
         } else {
-            // fetch('http://localhost:5000/users/logout', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({
-            //         name: this.state.name,
-            //         email: this.state.email
-            //     })
-            // });
+            /*fetch('/users/logout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: this.state.name,
+                    email: this.state.email
+                })
+            });*/
         }
     }
 

@@ -24,7 +24,7 @@ class DialogEdit extends Component {
     }
 
     callApi = async () => {
-        fetch(`http://localhost:5000/dialogs/find/${this.props.match.params.id}`)
+        fetch(`/dialogs/find/${this.props.match.params.id}`)
             .then(response => response.json())
             .then(data => {
                 this.setState({
@@ -47,7 +47,7 @@ class DialogEdit extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch(`http://localhost:5000/dialogs/edit/${this.props.match.params.id}`, {
+        fetch(`/dialogs/edit/${this.props.match.params.id}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

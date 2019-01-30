@@ -69,7 +69,7 @@ class DialogChat extends Component {
             conversation: [...this.state.conversation, msg],
         });
 
-        fetch('http://localhost:5000/dialogs/chat', {
+        fetch('/dialogs/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -90,7 +90,7 @@ class DialogChat extends Component {
 
     handleClick = (e) => {
         e.preventDefault();
-        fetch('http://localhost:5000/dialogs/save', {
+        fetch('/dialogs/save', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

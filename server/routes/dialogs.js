@@ -55,7 +55,7 @@ router.post('/save', (req, res) => {
         new Dialog(newDialog)
             .save()
             .then(dialog => {
-                // res.redirect('http://localhost:3000/dialog/show');
+
             });
 });
 
