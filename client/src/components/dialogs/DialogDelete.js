@@ -87,9 +87,12 @@ class DialogDelete extends Component {
                             </button>
                         </div>
                         <div className="col s6 m3">
-                            <button className='btn white red-text waves-effect waves-blue top-button'>
-                                <Link to={`/dialog/show/${this.state.user}`} className="blue-text">Cancel</Link>
-                            </button>
+                            <Link 
+                                className='btn white blue-text waves-effect waves-blue top-button'>
+                                to={`/dialog/show/${this.state.user}`} 
+                            >
+                                Cancel
+                            </Link>
                         </div>
                     </div>
                     <div className="row">
