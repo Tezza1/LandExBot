@@ -32,13 +32,6 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// @route       GET /
-// @desc        Landing page
-// @access      Public
-app.get('/', (req, res) => {
-
-});
-
 // Use routes
 app.use('/users', users);
 app.use('/dialogs', dialogs);
