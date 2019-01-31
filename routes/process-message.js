@@ -48,8 +48,11 @@ const processMessage = message => {
         .then(responses => {
             const result = responses[0].queryResult;
 
-            return pusher.trigger('bot', 'bot-response', {
+            /*return pusher.trigger('bot', 'bot-response', {
                 message: result.fulfillmentText,
+            });*/
+            pusher.trigger('my-channel', 'my-event', {
+                "message": "hello world"
             });
 
         })
