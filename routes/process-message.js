@@ -13,12 +13,20 @@ const config = {
     },
 };
 
-const pusher = new Pusher({
+/*const pusher = new Pusher({
     appId: process.env.PUSHER_APP_ID,
     key: process.env.PUSHER_APP_KEY,
     secret: process.env.PUSHER_APP_SECRET,
     cluster: process.env.PUSHER_APP_CLUSTER,
     encrypted: true,
+});*/
+
+const pusher = new Pusher({
+  appId: '703776',
+  key: '120793526e77b296017e',
+  secret: '6dd62228a8996089fa6c',
+  cluster: 'ap3',
+  encrypted: true
 });
 
 const sessionClient = new Dialogflow.SessionsClient(config);
@@ -43,6 +51,7 @@ const processMessage = message => {
             return pusher.trigger('bot', 'bot-response', {
                 message: result.fulfillmentText,
             });
+
         })
         .catch(err => {
             console.error('ERROR:', err);
