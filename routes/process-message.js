@@ -2,7 +2,7 @@ const Dialogflow = require('dialogflow');
 const Pusher = require('pusher');
 
 // from Dialogflow agent settings
-const projectId = 'newagent-4086c'; 
+const projectId = 'newagent-4086c';
 const sessionId = '123456';
 const languageCode = 'en-US';
 
@@ -13,24 +13,12 @@ const config = {
     },
 };
 
-/*const pusher = new Pusher({
+const pusher = new Pusher({
     appId: process.env.PUSHER_APP_ID,
     key: process.env.PUSHER_APP_KEY,
     secret: process.env.PUSHER_APP_SECRET,
     cluster: process.env.PUSHER_APP_CLUSTER,
     encrypted: true,
-});*/
-
-const pusher = new Pusher({
-  appId: '703776',
-  key: '120793526e77b296017e',
-  secret: '6dd62228a8996089fa6c',
-  cluster: 'ap3',
-  encrypted: true
-});
-
-pusher.trigger('bot', 'bot-response', {
-    "message": "hello world"
 });
 
 const sessionClient = new Dialogflow.SessionsClient(config);
