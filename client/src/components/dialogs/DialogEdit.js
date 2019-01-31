@@ -89,9 +89,7 @@ class DialogEdit extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="row">
                         <div className="col s6 m3 offset-m3">
-                            <button
-                                className='btn white red-text waves-effect waves-blue top-button'
-                            >
+                            <button className='btn white red-text waves-effect waves-blue top-button'>
                                 Save
                             </button>
                         </div>
