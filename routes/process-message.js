@@ -29,7 +29,7 @@ const pusher = new Pusher({
   encrypted: true
 });
 
-pusher.trigger('my-channel', 'my-event', {
+pusher.trigger('bot', 'bot-response', {
     "message": "hello world"
 });
 
