@@ -25,8 +25,8 @@ class DialogChat extends Component {
     //  listening for the bot-response event on the bot channel.
     // will the trigger this event on the server and pass the response of the bot through the event payload
     componentDidMount() {
-        const pusher = new Pusher('fed64599aa2d502fa7e4', {
-            cluster: 'mt1',
+        const pusher = new Pusher('bf71bc7c474fdd2a31a5', {
+            cluster: 'ap3',
             encrypted: true,
         });
 

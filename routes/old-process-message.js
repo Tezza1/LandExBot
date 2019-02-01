@@ -50,5 +50,4 @@ const processMessage = message => {
         });
 };
 
-
 module.exports = processMessage;
