@@ -1,19 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const processMessage = require('./process-message');
 
 // Load Mongoose Model
 require('../models/Dialog');
 const Dialog = mongoose.model('dialogs');
-
-// @route       POST /
-// @desc        Have a conversation with a bot
-// @access      Public
-router.post('/chat', (req, res) => {
-    const { message } = req.body;
-    processMessage(message);
-});
 
 // @route       GET /
 // @desc        List of all conversations
