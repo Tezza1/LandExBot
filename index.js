@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
   console.log('a user connected');
 
   socket.on('SEND_MESSAGE', function(data){
-        const { message } = data;
+        /*const { message } = data;
         let result = {};
 
         const request = {
@@ -61,7 +61,9 @@ io.on('connection', (socket) => {
             })
             .catch(err => {
                 console.error('ERROR:', err);
-            });
+            });*/
+
+         io.emit('RECEIVE_MESSAGE', data);
 
     })
 });
