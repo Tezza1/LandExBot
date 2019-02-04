@@ -1,4 +1,0 @@
-bot
-bot123
-
-mongodb://<dbuser>:<dbpassword>@ds159184.mlab.com:59184/lang_ex_bot

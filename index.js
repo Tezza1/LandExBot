@@ -1,12 +1,13 @@
 // server/index.js
 
-// require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({ path: 'variables.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const gravatar = require('gravatar');
-const cors = require('cors');
+// const cors = require('cors');
+const uuidv1 = require('uuid/v1');
 const path = require('path');
 const dialogflow = require('dialogflow');
 
@@ -36,33 +37,15 @@ if (!process.env.GOOGLE_PRIVATE_KEY) {
 
 // from Dialogflow agent settings
 const projectId = process.env.GOOGLE_PROJECT_ID;
-const sessionId = '123456';
+const sessionId = uuidv1();
 const languageCode = process.env.DF_LANGUAGE_CODE;
 
 const config = {
     credentials: {
-        // private_key: process.env.GOOGLE_PRIVATE_KEY,
-        private_key: JSON.parse(process.env.DIALOGFLOW_PRIVATE_KEY),
-        client_email: process.env.GOOGLE_CLIENT_EMAIL
+        private_key: (process.env.NODE_ENV=="production") ? JSON.parse(process.env.GOOGLE_PRIVATE_KEY) : process.env.GOOGLE_PRIVATE_KEY,
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
     },
 };
-
-// const credentials = {
-//     client_email: process.env.GOOGLE_CLIENT_EMAIL,
-//     // private_key: JSON.parse(process.env.GOOGLE_PRIVATE_KEY),
-//     private_key: process.env.GOOGLE_PRIVATE_KEY
-// };
-
-// Create a new session
-// const sessionClient = new dialogflow.SessionsClient({
-//     projectId: process.env.GOOGLE_PROJECT_ID,
-//     config
-// });
-
-// const sessionPath = sessionClient.sessionPath(
-//     process.env.GOOGLE_PROJECT_ID,
-//     sessionId
-// )
 
 // Create a new session
 const sessionClient = new dialogflow.SessionsClient(config);
@@ -115,7 +98,7 @@ mongoose
 
 
 // Cors
-app.use(cors());
+// app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
