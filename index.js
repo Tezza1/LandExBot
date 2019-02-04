@@ -1,6 +1,6 @@
 // server/index.js
 
-require('dotenv').config({ path: 'variables.env' });
+// require('dotenv').config({ path: 'variables.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -41,8 +41,9 @@ const languageCode = process.env.DF_LANGUAGE_CODE;
 
 const config = {
     credentials: {
-        private_key: process.env.GOOGLE_PRIVATE_KEY,
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        // private_key: process.env.GOOGLE_PRIVATE_KEY,
+        private_key: JSON.parse(process.env.DIALOGFLOW_PRIVATE_KEY),
+        client_email: process.env.GOOGLE_CLIENT_EMAIL
     },
 };
 
