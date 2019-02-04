@@ -6,7 +6,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const gravatar = require('gravatar');
-// const cors = require('cors');
+const cors = require('cors');
 const uuidv1 = require('uuid/v1');
 const path = require('path');
 const dialogflow = require('dialogflow');
@@ -98,7 +98,7 @@ mongoose
 
 
 // Cors
-// app.use(cors());
+app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
