@@ -1,18 +1,24 @@
 # LangExBot
 
-## Goal
-_For non-native English students to practice their everyday English conversation.   
-(Phase 2: practice their business English)_
+#### Live version
+[Live version hosted on Heroku](https://hidden-beach-22701.herokuapp.com)
 
-## User stories
-__New learning:__
-* Can login with Google
-* Can see a list of all available conversation topics
-* Can choose topics to practice their conversation
-* Can have a 'conversation' on a topic
-* Can save a conversation  
+#### Overview
+For __non-native__ English students to practice their everyday English conversation. They can do this through the use of a chatbot to have everyday English conversations.
 
-__Review:__
-* Can see a list of past conversations
-* Can see past conversations grouped by topic
-* Can edit a conversation
+#### Key technologies:
+* Node
+* Express
+* APIs - Google Authtentification, Google Client, DialogFlow
+* Sockets
+* MongoDB and Mongoose
+* React
+* React Router
+* Redux
+* Heroku and mLabs
+
+#### Phase 2 development
+* Train the ChatBot
+* Create topics of conversation
+* Create a syllabus
+* Keep track of student progress
