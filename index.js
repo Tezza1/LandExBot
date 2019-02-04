@@ -1,6 +1,6 @@
 // server/index.js
 
-// require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({ path: 'variables.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -39,32 +39,33 @@ const projectId = process.env.GOOGLE_PROJECT_ID;
 const sessionId = '123456';
 const languageCode = process.env.DF_LANGUAGE_CODE;
 
-/*const config = {
+const config = {
     credentials: {
         private_key: process.env.GOOGLE_PRIVATE_KEY,
         client_email: process.env.GOOGLE_CLIENT_EMAIL,
     },
-};*/
-
-const credentials = {
-    client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    private_key: JSON.parse(process.env.GOOGLE_PRIVATE_KEY),
 };
 
-// Create a new session
-const sessionClient = new dialogflow.SessionsClient({
-    projectId: process.env.GOOGLE_PROJECT_ID,
-    credentials
-});
-
-const sessionPath = sessionClient.sessionPath(
-    process.env.GOOGLE_PROJECT_ID,
-    sessionId
-)
+// const credentials = {
+//     client_email: process.env.GOOGLE_CLIENT_EMAIL,
+//     // private_key: JSON.parse(process.env.GOOGLE_PRIVATE_KEY),
+//     private_key: process.env.GOOGLE_PRIVATE_KEY
+// };
 
 // Create a new session
-// const sessionClient = new dialogflow.SessionsClient(config);
-// const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+// const sessionClient = new dialogflow.SessionsClient({
+//     projectId: process.env.GOOGLE_PROJECT_ID,
+//     config
+// });
+
+// const sessionPath = sessionClient.sessionPath(
+//     process.env.GOOGLE_PROJECT_ID,
+//     sessionId
+// )
+
+// Create a new session
+const sessionClient = new dialogflow.SessionsClient(config);
+const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 // use socket to process send and rceivce dialogFlow request and response
 io.on('connection', (socket) => {
@@ -84,7 +85,7 @@ io.on('connection', (socket) => {
             queryInput: {
                 text: {
                     text: message,
-                    languageCode,
+                    languageCode: process.env.DF_LANGUAGE_CODE,
                 },
             },
         };
