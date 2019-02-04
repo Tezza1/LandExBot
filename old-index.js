@@ -1,6 +1,6 @@
 // server/index.js
 
-// require('dotenv').config({ path: 'variables.env' });
+require('dotenv').config({ path: 'variables.env' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const gravatar = require('gravatar');
 const cors = require('cors');
 const path = require('path');
-const dialogflow = require('dialogflow');
+const Dialogflow = require('dialogflow');
 
 const app = express();
 
@@ -20,51 +20,20 @@ const io = require('socket.io')(http);
 const users = require('./routes/users');
 const dialogs = require('./routes/dialogs');
 
-// check config variables have been set
-if (!process.env.GOOGLE_PROJECT_ID) {
-    throw new Error('missing GOOGLE_PROJECT_ID');
-}
-if (!process.env.DF_LANGUAGE_CODE) {
-    throw new Error('missing DF_LANGUAGE_CODE');
-}
-if (!process.env.GOOGLE_CLIENT_EMAIL) {
-    throw new Error('missing GOOGLE_CLIENT_EMAIL');
-}
-if (!process.env.GOOGLE_PRIVATE_KEY) {
-    throw new Error('missing GOOGLE_PRIVATE_KEY');
-}
-
 // from Dialogflow agent settings
-const projectId = process.env.GOOGLE_PROJECT_ID;
+const projectId = 'newagent-4086c';
 const sessionId = '123456';
-const languageCode = process.env.DF_LANGUAGE_CODE;
+const languageCode = 'en-US';
 
-/*const config = {
+const config = {
     credentials: {
-        private_key: process.env.GOOGLE_PRIVATE_KEY,
-        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        private_key: process.env.DIALOGFLOW_PRIVATE_KEY,
+        client_email: process.env.DIALOGFLOW_CLIENT_EMAIL,
     },
-};*/
-
-const credentials = {
-    client_email: process.env.GOOGLE_CLIENT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
 };
 
-// Create a new session
-const sessionClient = new dialogflow.SessionsClient({
-    projectId: process.env.GOOGLE_PROJECT_ID,
-    credentials
-});
-
-const sessionPath = sessionClient.sessionPath(
-    process.env.GOOGLE_PROJECT_ID,
-    sessionId
-)
-
-// Create a new session
-// const sessionClient = new dialogflow.SessionsClient(config);
-// const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+const sessionClient = new Dialogflow.SessionsClient(config);
+const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 // use socket to process send and rceivce dialogFlow request and response
 io.on('connection', (socket) => {
