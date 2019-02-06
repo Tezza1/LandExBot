@@ -3,6 +3,10 @@
 #### Live version
 [Live version hosted on Heroku](https://hidden-beach-22701.herokuapp.com)
 
+Use Admin Test _Gmail_ account to trial:  
+__Email:__ kansaisd  
+__Password:__ admin$123  
+
 #### Overview
 For __non-native__ English students to practice their everyday English conversation. They can do this through the use of a chatbot to have everyday English conversations.
 
